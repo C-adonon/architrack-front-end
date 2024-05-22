@@ -6,8 +6,6 @@ import Pill from "./../components/pills_tags/Pill.vue";
 import TextInput from "./../components/inputs/TextInput.vue";
 import TextArea from "./../components/inputs/TextArea.vue";
 import Select from "./../components/selects/Select.vue";
-import SearchSelect from "./../components/selects/SearchSelect.vue";
-import MultiSelect from "./../components/selects/MultiSelect.vue";
 import Checkbox from "../components/inputs/CheckboxGroup.vue";
 import AccountablesTable from "./../components/tables/AccountablesTable.vue";
 // Services
@@ -237,14 +235,14 @@ const handleNewValues = (newValues) => {
             name="language"
             label="languages"
             :options="languages"
-            :values="application.language"
+            :values="application.languages"
             @newValues="handleNewValues"
           />
           <Checkbox
             name="software"
             label="softwares"
             :options="softwares"
-            :values="application.software"
+            :values="application.softwares"
             @newValues="handleNewValues"
           />
         </div>
@@ -254,7 +252,7 @@ const handleNewValues = (newValues) => {
             name="accountables"
             label="accountables"
             :author="application.author"
-            :accountables="application.pic"
+            :accountables="application.accountables"
             @updatedAccountables="handleNewValues"
           />
         </div>
