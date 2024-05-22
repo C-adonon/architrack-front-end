@@ -40,7 +40,7 @@ let currentAccountablesIdList = computed(() => {
 
 function handleAddNewAccountables(accountables) {
   // console.log("handleAddNewAccountables: ", accountables);
-  updatedAccountableList.value = [...props.accountables, ...accountables];
+  updatedAccountableList.value = accountables;
   // console.log("updatedAccountableList: ", {
   //   accountable: updatedAccountableList.value,
   // });
