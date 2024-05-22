@@ -19,7 +19,9 @@ async function request(endpoint, method, data = null, token = null) {
 
   if (!response.ok) {
     const error = await response.json();
-    throw new Error(error.message || "Something went wrong");
+    console.error(error);
+    // TODO: Handle error properly ie show toast
+    throw new Error(error.error || "Something went wrong");
   }
 
   return response.json();

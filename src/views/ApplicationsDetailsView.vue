@@ -37,6 +37,7 @@ let applicationTypes = ref([]);
 let providers = ref([]);
 let languages = ref([]);
 let softwares = ref([]);
+let err = ref({ msg: "", value: false });
 
 onMounted(async () => {
   try {
@@ -68,6 +69,7 @@ onMounted(async () => {
     softwares.value = await softwareService.getAllSoftwares();
   } catch (error) {
     console.error(error);
+    err.value = { msg: error, value: true };
   }
 });
 
@@ -83,7 +85,7 @@ async function updateApplication() {
 
 const handleNewValues = (newValues) => {
   console.log("newValues: ", newValues);
-  updatedApp.value = { ...updatedApp.value, ... newValues };
+  updatedApp.value = { ...updatedApp.value, ...newValues };
   console.log(updatedApp.value);
 };
 </script>
@@ -230,7 +232,7 @@ const handleNewValues = (newValues) => {
                 (updatedApp = { ...updatedApp, state: event.target.value })
             "
             required
-          />      
+          />
           <Checkbox
             name="language"
             label="languages"
@@ -261,6 +263,13 @@ const handleNewValues = (newValues) => {
     <div class="btn-group">
       <button class="btn" @click="updateApplication">Edit</button>
     </div>
+  </section>
+  <section v-else-if="err">
+    <h1>Not Found</h1>
+    <p>{{ err.msg }}</p>
+  </section>
+  <section v-else>
+    <p>Loading ...</p>
   </section>
 </template>
 

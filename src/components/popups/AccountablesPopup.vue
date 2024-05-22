@@ -14,7 +14,6 @@ let checked = ref(false);
 
 onMounted(async () => {
   try {
-    console.log("selectedAccountables: ", props.selectedAccountables);
     allUsers.value = await userService.getAllUsers();
   } catch (error) {
     console.error(error);
@@ -42,7 +41,6 @@ function addNewAccountables() {
     ...props.selectedAccountables,
     ...newAccountableList.value,
   ];
-  console.log("addNewAccountables: ", addNewAccountables.value);
   emit("sendAccountables", newAccountableList.value);
   document.getElementById("modal-accountables").close();
 }
