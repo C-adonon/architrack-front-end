@@ -113,13 +113,36 @@ const handleNewValues = (newValues) => {
           "
           required
         />
+        <!-- TODO: UNFINISHED & NOT FUNCTIONAL-> linked list implementation:
+         selecting the department filters out the options for the business capabilities
+         when you change the department the business capabilities field resets 
+         and you have to choose a new bc based on the selected department -->
         <div class="app-form-col2 business-process">
+          <Select
+            name="department"
+            label="department"
+            :options="departments"
+            :valueId="application.department?.id.toString()"
+            :valueName="application.department?.name"
+            @change="
+              (event) =>
+                (updatedApp = {
+                  ...updatedApp,
+                  departmentId: parseInt(event.target.value),
+                })
+            "
+          />
           <Select
             name="business-cap"
             label="business capabilities"
-            :options="businessCapabilities"
-            :valueId="application.businessCapability?.id.toString()"
-            :valueName="application.businessCapability?.name"
+            :options="
+              application.department?.businessCapability
+                ? application.department.businessCapability
+                : businessCapabilities
+            "
+            :filter="application.department?.id"
+            :valueId="application.department?.businessCapability?.id"
+            :valueName="application.department?.businessCapability?.name"
             @change="
               (event) =>
                 (updatedApp = {
@@ -127,12 +150,6 @@ const handleNewValues = (newValues) => {
                   businessCapabilityId: parseInt(event.target.value),
                 })
             "
-          />
-          <TextInput
-            name="department"
-            label="department"
-            :value="application.businessCapability?.department.name"
-            disabled
           />
         </div>
         <TextInput
