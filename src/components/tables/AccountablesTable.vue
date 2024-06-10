@@ -44,7 +44,7 @@ function handleAddNewAccountables(accountables) {
   // console.log("updatedAccountableList: ", {
   //   accountable: updatedAccountableList.value,
   // });
-  emit("updatedAccountables", { user: updatedAccountableList.value });
+  emit("updatedAccountables", { accountables: updatedAccountableList.value });
 }
 </script>
 
