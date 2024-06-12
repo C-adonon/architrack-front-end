@@ -35,16 +35,16 @@ function showPopup() {
 }
 
 let currentAccountablesIdList = computed(() => {
-  return props.accountables.map((acc) => acc.pic.id);
+  return props.accountables.map((acc) => acc.user.id);
 });
 
 function handleAddNewAccountables(accountables) {
   // console.log("handleAddNewAccountables: ", accountables);
-  updatedAccountableList.value = [...props.accountables, ...accountables];
+  updatedAccountableList.value = accountables;
   // console.log("updatedAccountableList: ", {
   //   accountable: updatedAccountableList.value,
   // });
-  emit("updatedAccountables", { pic: updatedAccountableList.value });
+  emit("updatedAccountables", { accountables: updatedAccountableList.value });
 }
 </script>
 
@@ -76,22 +76,22 @@ function handleAddNewAccountables(accountables) {
         <tr
           v-for="(accountable, index) in accountables"
           :key="index"
-          class="pic"
+          class="user"
         >
           <td>
             <div class="">
-              {{ accountable.pic.firstname }} - {{ accountable.pic.lastname }}
+              {{ accountable.user.firstname }} - {{ accountable.user.lastname }}
             </div>
-            <div>{{ accountable.pic.department.name }}</div>
+            <div>{{ accountable.user.department.name }}</div>
           </td>
-          <td>{{ accountable.pic.email }}</td>
+          <td>{{ accountable.user.email }}</td>
           <td>
-            <span class="role">{{ accountable.pic.role.toLowerCase() }}</span>
+            <span class="role">{{ accountable.user.role.toLowerCase() }}</span>
           </td>
           <td>
             <button
               class="btn-table-action"
-              @click="removeAccountable(accountable.pic.id)"
+              @click="removeAccountable(accountable.user.id)"
             >
               Remove
             </button>
