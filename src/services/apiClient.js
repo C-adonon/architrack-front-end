@@ -1,43 +1,48 @@
-const BASE_URL = import.meta.env.VITE_API_URL;
+import axios from "axios";
+import { useAuthStore } from "../store/authStore";
 
-const defaultHeaders = {
-  "Content-Type": "application/json",
-};
-
-async function request(endpoint, method, data = null, token = null) {
-  const config = {
-    method,
-    headers: {
-      ...defaultHeaders,
-      ...(token && { Authorization: `Bearer ${token}` }),
-    },
-    ...(data && { body: JSON.stringify(data) }),
-  };
-
-  console.log(`${BASE_URL}${endpoint}`, config);
-  const response = await fetch(`${BASE_URL}${endpoint}`, config);
-
-  if (!response.ok) {
-    const error = await response.json();
-    console.error(error);
-    // TODO: Handle error properly ie show toast
-    throw new Error(error.error || "Something went wrong");
-  }
-
-  return response.json();
+function formatResponse(response) {
+  return response.data;
 }
 
+const apiClient = axios.create({
+  baseURL: import.meta.env.VITE_API_URL,
+  headers: {
+    "Accept": "*/*",
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "localhost:5173",
+  },
+  withCredentials: true,
+});
+
+apiClient.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    if (error.response && error.response.status === 403) {
+      const authStore = useAuthStore();
+      try {
+        await authStore.refreshToken();
+
+        return apiClient.request(error.config);
+      } catch (refreshError) {
+        authStore.logoutUser();
+      }
+    }
+    return Promise.reject(error);
+  }
+);
+
 export default {
-  get(endpoint, token) {
-    return request(endpoint, "GET", null, token);
+  async get(endpoint) {
+    return await apiClient.get(endpoint);
   },
-  post(endpoint, data, token) {
-    return request(endpoint, "POST", data, token);
+  async post(endpoint, data) {
+    return await apiClient.post(endpoint, data);
   },
-  put(endpoint, data, token) {
-    return request(endpoint, "PUT", data, token);
+  async put(endpoint, data) {
+    return await apiClient.put(endpoint, data);
   },
-  delete(endpoint, token) {
-    return request(endpoint, "DELETE", null, token);
+  async delete(endpoint) {
+    return await apiClient.delete(endpoint);
   },
 };

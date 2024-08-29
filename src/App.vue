@@ -1,15 +1,11 @@
 <script setup>
-import { RouterView } from 'vue-router'
-import LoginView from './views/LoginView.vue';
-const authentified = true;
+import { RouterView } from "vue-router";
+import { useAuthStore } from "@/store/authStore";
 </script>
 
 <template>
-  <div>Architrack</div>
-  <div v-if="!authentified">
-    <LoginView />
-  </div>
-  <div v-else>
+  <div id="app">
+    <p>isAuthenticated = {{ useAuthStore().isAuthenticated }}</p>
     <RouterView />
   </div>
 </template>
