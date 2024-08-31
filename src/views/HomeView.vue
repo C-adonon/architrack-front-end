@@ -8,14 +8,15 @@ import PieChart from "../components/charts/PieChart.vue";
 import VerticalBarChart from "../components/charts/VerticalBarChart.vue";
 import HorizontalBarChart from "../components/charts/HorizontalBarChart.vue";
 import PolarChart from "../components/charts/PolarChart.vue";
+import Logout from "@/views/LogoutView.vue";
+import SideBarVue from "@/components/nav/SideBar.vue";
 
 let rawData = ref({});
 let err = ref({ msg: "", value: false });
 
 onMounted(async () => {
   try {
-    rawData.value = await charDataService.getChartData();
-    console.log(rawData.value);
+    rawData.value = (await charDataService.getChartData()).data;
   } catch (error) {
     console.error(error);
     err.value = { msg: error, value: true };
@@ -25,8 +26,9 @@ onMounted(async () => {
 
 <template>
   <main>
-    <h1>Welcome</h1>
+    <SideBarVue />
     <section class="dashboard-container">
+      <h1>Welcome</h1>
       <div
         class="dashboard-top-row flex flex-row flex-wrap justify-content-between mb-5"
       >
@@ -90,6 +92,9 @@ onMounted(async () => {
 </template>
 
 <style scoped>
+.dashboard-container{
+  padding: 0 2vw;
+}
 .dashboard-bottom-row {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
