@@ -1,12 +1,18 @@
-/* @import './base.css'; */
+@use "./variables";
+@use "./themes/aura-light-noir.scss";
 
 body {
   margin: 0;
+  background-color: var(--off-white);
+  font-family: var(--font-regular);
+  // overflow-y: hidden;
 }
 
 main {
-  width: 80%;
-  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 1fr;
+  grid-gap: 10px;
 }
 
 /* h3 {
@@ -42,7 +48,7 @@ textarea {
   font-size: 1rem;
 } */
 
-.btn {
+/* .btn {
   border-radius: 0.25rem;
   color: #333;
   background-color: lightgray;
@@ -68,4 +74,4 @@ textarea {
 
 textarea {
   resize: none;
-}
+} */
