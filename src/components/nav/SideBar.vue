@@ -83,7 +83,7 @@ import NavUserInfo from "@/components/nav/NavUserInfo.vue";
 }
 
 .sidebar {
-  max-height: 100vh;
+  height: 100vh;
   padding: 24px 16px;
   background: #fff;
   display: flex;
@@ -98,9 +98,13 @@ import NavUserInfo from "@/components/nav/NavUserInfo.vue";
     display: flex;
     flex-direction: column;
 
-    ul {
+    ul.nav-group {
       list-style-type: none;
       padding: 0;
+
+      li {
+        margin-bottom: 4px;
+      }
     }
   }
 
