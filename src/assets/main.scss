@@ -1,0 +1,77 @@
+@use "./variables";
+@use "./themes/aura-light-noir.scss";
+
+body {
+  margin: 0;
+  background-color: var(--off-white);
+  font-family: var(--font-regular);
+  // overflow-y: hidden;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 1fr;
+  grid-gap: 10px;
+}
+
+/* h3 {
+  text-transform: uppercase;
+  margin: 1rem 0;
+} */
+
+/* input[type="password"] {
+  flex-grow: 1;
+} */
+
+.required-field {
+  color: red;
+}
+
+/* label.capitalize {
+  text-transform: capitalize ;
+} */
+
+/* .input-wrapper {
+  width: 100%;
+  margin-bottom: 1rem;
+} */
+
+/* input[type="text"],
+select,
+textarea {
+  margin-top: 0.5rem;
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+} */
+
+/* .btn {
+  border-radius: 0.25rem;
+  color: #333;
+  background-color: lightgray;
+  padding: 0.5rem 2rem;
+}
+
+.btn a {
+  text-decoration: none;
+}
+
+.btn:hover {
+  background-color: gray;
+  color: white;
+}
+
+.btn-group {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0.5rem;
+  margin: 2rem 0;
+}
+
+textarea {
+  resize: none;
+} */

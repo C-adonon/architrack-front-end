@@ -2,6 +2,7 @@
 import { onMounted, ref, computed } from "vue";
 import applicationService from "../services/applicationService";
 import Tags from "./../components/pills_tags/Tags.vue";
+import SideBar from '@/components/nav/SideBar.vue'
 
 const applications = ref([]);
 let err = ref({ msg: "", value: false });
@@ -30,7 +31,7 @@ let tagColor = computed(() => {
 
 onMounted(async () => {
   try {
-    applications.value = await applicationService.getAllApplications();
+    applications.value = (await applicationService.getAllApplications()).data;
     console.log("apps: ", applications.value);
   } catch (error) {
     console.error(error);
@@ -40,45 +41,54 @@ onMounted(async () => {
 </script>
 
 <template>
-  <section v-if="applications">
-    <h1>Applications</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Application type</th>
-          <th>Department</th>
-          <th>State</th>
-          <th>Validation status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(application, index) in applications" :key="index">
-          <router-link
-            :to="{
-              name: 'applicationsDetails',
-              params: { id: application.id },
-            }"
-          >
-            <td>{{ application.name }}</td>
-            <td>{{ application.applicationType.name }}</td>
-            <td>{{ application.department.name }}</td>
-            <td>{{ application.state }}</td>
-            <td>
-              <Tags :text="application.validationStatus" :color="tagColor[index]" />
-            </td>
-          </router-link>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-  <section v-else-if="err">
-    <h1>Error</h1>
-    <p>{{ err.msg }}</p>
-  </section>
-  <section v-else>
-    <p>Loading...</p>
-  </section>
+  <main>
+    <SideBar />
+    <section v-if="applications">
+      <div class="filter">
+        
+      </div>
+      <h1>Applications</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Application type</th>
+            <th>Department</th>
+            <th>State</th>
+            <th>Validation status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(application, index) in applications" :key="index">
+            <router-link
+              :to="{
+                name: 'applicationsDetails',
+                params: { id: application.id },
+              }"
+            >
+              <td>{{ application.name }}</td>
+              <td>{{ application.applicationType.name }}</td>
+              <td>{{ application.department.name }}</td>
+              <td>{{ application.state }}</td>
+              <td>
+                <Tags
+                  :text="application.validationStatus"
+                  :color="tagColor[index]"
+                />
+              </td>
+            </router-link>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section v-else-if="err">
+      <h1>Error</h1>
+      <p>{{ err.msg }}</p>
+    </section>
+    <section v-else>
+      <p>Loading...</p>
+    </section>
+  </main>
 </template>
 
 <style scoped>
