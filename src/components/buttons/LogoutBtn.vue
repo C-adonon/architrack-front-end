@@ -17,7 +17,13 @@ async function logout() {
 </script>
 
 <template>
-  <div class="logout-btn ">
-    <Button  @click="logout" label="Logout" severity="danger" icon="pi pi-sign-out" text />
+  <div class="logout-btn">
+    <Button
+      @click="logout"
+      label="Logout"
+      severity="danger"
+      icon="pi pi-sign-out"
+      text
+    />
   </div>
 </template>
