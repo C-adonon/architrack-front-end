@@ -7,6 +7,8 @@ import HomeView from "@/views/HomeView.vue";
 import LoginView from "@/views/LoginView.vue";
 import RegisterView from "@/views/RegisterView.vue";
 import TechnicalView from "@/views/TechnicalView.vue";
+import ProvidersView from "@/views/ProvidersView.vue";
+import NotificationsView from "@/views/NotificationsView.vue";
 import { createRouter, createWebHistory } from "vue-router";
 
 const router = createRouter({
@@ -38,6 +40,18 @@ const router = createRouter({
       path: "/businessprocess",
       name: "businessProcess",
       component: BusinessProcessView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: "/providers",
+      name: "providers",
+      component: ProvidersView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: "/notifications",
+      name: "notifications",
+      component: NotificationsView,
       meta: { requiresAuth: true },
     },
     {
