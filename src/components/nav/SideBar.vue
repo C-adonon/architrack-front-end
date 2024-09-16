@@ -51,7 +51,7 @@ import NavUserInfo from "@/components/nav/NavUserInfo.vue";
             />
           </li>
         </ul>
-        <ul class="nav-group">
+        <!-- <ul class="nav-group">
           <NavSubtitle :text="`Admin`" />
           <li>
             <NavTab
@@ -60,7 +60,7 @@ import NavUserInfo from "@/components/nav/NavUserInfo.vue";
               :path="`/admin`"
             />
           </li>
-        </ul>
+        </ul> -->
       </div>
     </div>
 

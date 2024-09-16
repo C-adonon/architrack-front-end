@@ -5,9 +5,7 @@ import { useAuthStore } from "@/store/authStore";
 import Password from "primevue/password";
 import InputText from "primevue/inputtext";
 import Button from "primevue/button";
-// import authService from "@/auth";
-import Logout from "@/views/LogoutView.vue";
-import Toast from '@/components/toasts/Toast.vue';
+// import Toast from "@/components/toasts/Toast.vue";
 
 const router = useRouter();
 
@@ -17,18 +15,10 @@ const authStore = useAuthStore();
 
 async function handleLogin() {
   try {
-    // OLD CODE
-    console.log(email.value, password.value);
-    // let res = await authService.login({
-    //   email: email.value,
-    //   password: password.value,
-    // });
-    // NEW CODE
     let res = await authStore.loginUser({
       email: email.value,
       password: password.value,
     });
-    console.log(res);
     router.push({ path: "/" });
   } catch (error) {
     console.error(error);
@@ -37,8 +27,7 @@ async function handleLogin() {
 </script>
 
 <template>
-  <Logout />
-  <div id="login-container"> 
+  <div id="login-container">
     <section
       id="login-form"
       class="flex flex-column justify-content-center gap-3 md:w-4 w-11 m-auto"
@@ -94,7 +83,7 @@ async function handleLogin() {
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped >
 :deep(.p-password-input) {
   flex: 1;
 }

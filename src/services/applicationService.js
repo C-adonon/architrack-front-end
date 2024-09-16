@@ -1,5 +1,5 @@
 import apiClient from "./apiClient";
-// TODO: ADD THE TOKEN
+
 export default {
   // APPLICATIONS
   getAllApplications() {
@@ -30,4 +30,7 @@ export default {
   getApplicationHostingTypes() {
     return apiClient.get("/applications/hostingtypes");
   },
+  getApplicationValidationStatuses() {
+    return apiClient.get("/applications/validationstatuses");
+  }
 };

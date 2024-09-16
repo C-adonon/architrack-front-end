@@ -1,5 +1,5 @@
 <script setup>
-import { RouterLink, useRoute } from "vue-router";
+import { RouterLink, useRoute , useRouter} from "vue-router";
 import { onMounted, ref } from "vue";
 import Password from "primevue/password";
 import InputText from "primevue/inputtext";
@@ -10,7 +10,9 @@ import Toast from "primevue/toast";
 import { useToast } from "primevue/usetoast";
 import userService from "@/services/userService";
 import departmentService from "@/services/departmentService.js";
-// import authService from "@/auth";
+import authService from "../auth/index.js";
+
+const router = useRouter();
 
 let email = ref("");
 let password = ref("");
@@ -99,6 +101,10 @@ async function handleRegister() {
       role: role.value,
       departmentId: departmentId.value,
     });
+    if (res.status === 201) {
+      router.push({ path: "/" });
+      showSuccess();
+    }
     console.log(res);
   } catch (error) {
     // summary.value = error.error;
@@ -111,7 +117,7 @@ async function handleRegister() {
 
 <template>
   <Toast />
-  <div id="register-container" class="">
+  <div id="register-container" class="" v-if="allDepartments && allRoles">
     <section
       id="register-form"
       class="flex flex-column justify-content-center gap-3 md:w-4 w-11 m-auto"
