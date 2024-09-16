@@ -15,6 +15,7 @@ const authStore = useAuthStore();
 
 async function handleLogin() {
   try {
+    console.log(import.meta.env.VITE_API_URL);
     let res = await authStore.loginUser({
       email: email.value,
       password: password.value,
