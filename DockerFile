@@ -1,0 +1,20 @@
+FROM node:20.10.0
+
+ENV VITE_API_URL=https://architrack-api-7inqv.ondigitalocean.app/
+
+RUN npm install -g pnpm
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN pnpm install
+
+COPY . .
+
+RUN pnpm run build
+
+EXPOSE 8080
+
+RUN pnpm install -g http-server
+CMD ["http-server", "dist"]
