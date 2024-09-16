@@ -6,10 +6,11 @@ import BusinessProcessView from "@/views/BusinessProcessView.vue";
 import HomeView from "@/views/HomeView.vue";
 import LoginView from "@/views/LoginView.vue";
 import RegisterView from "@/views/RegisterView.vue";
-import TechnicalView from "@/views/TechnicalView.vue";
+import DepartementView from "@/views/DepartementView.vue";
 import ProvidersView from "@/views/ProvidersView.vue";
 import NotificationsView from "@/views/NotificationsView.vue";
 import { createRouter, createWebHistory } from "vue-router";
+import ApplicationFormView from "@/views/ApplicationFormView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -55,21 +56,43 @@ const router = createRouter({
       meta: { requiresAuth: true },
     },
     {
-      path: "/technical",
-      name: "technical",
-      component: TechnicalView,
+      path: "/departments/:id",
+      name: "department",
+      component: DepartementView,
       meta: { requiresAuth: true },
     },
+    // {
+    //   path: "/applications",
+    //   children: [
+    //     {
+    //       path: "",
+    //       component: ApplicationsView,
+    //       meta: { requiresAuth: true },
+    //     },
+    //     {
+    //       path: ":id",
+    //       component: ApplicationFormView,
+    //       meta: { requiresAuth: true },
+    //     },
+    //   ],
+    // },
+
     {
       path: "/applications/:id",
       name: "applicationsDetails",
-      component: ApplicationsDetailsView,
+      component: ApplicationFormView,
       meta: { requiresAuth: true },
     },
     {
       path: "/applications",
       name: "applications",
       component: ApplicationsView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: "/applications/new",
+      name: "applicationsNew",
+      component: ApplicationFormView,
       meta: { requiresAuth: true },
     },
     {

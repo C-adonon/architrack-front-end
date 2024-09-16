@@ -4,10 +4,9 @@ import { useAuthStore } from "@/store/authStore";
 </script>
 
 <template>
-  <div id="app">
-    <p>isAuthenticated = {{ useAuthStore().isAuthenticated }}</p>
-    <RouterView />
-  </div>
+  <!-- <span>isAuthenticated = {{ useAuthStore().isAuthenticated }}</span> -->
+  <RouterView />
 </template>
 
-<style scoped></style>
+<style scoped>
+</style>

@@ -40,9 +40,9 @@ let err = ref({ msg: "", value: false });
 onMounted(async () => {
   try {
     // Gets current application
-    application.value = await applicationService.getApplicationById(
+    application.value = (await applicationService.getApplicationById(
       route.params.id
-    );
+    )).data;
     // get all options
     states.value = (await applicationService.getApplicationStates()).map(
       (opt) => ({ id: opt, name: opt })
@@ -77,7 +77,6 @@ async function updateApplication() {
     route.params.id,
     updatedApp.value
   );
-  // if the request is successful, alert the user
   console.log(response);
 }
 
