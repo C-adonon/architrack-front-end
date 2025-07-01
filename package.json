@@ -11,7 +11,6 @@
   },
   "engines": {
     "node": "20.10.0",
-    "npm": "10.2.5",
     "pnpm": "8.12.0"
   },
   "dependencies": {
