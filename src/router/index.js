@@ -11,9 +11,11 @@ import ProvidersView from "@/views/ProvidersView.vue";
 import NotificationsView from "@/views/NotificationsView.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import ApplicationFormView from "@/views/ApplicationFormView.vue";
+import Error404View from "@/views/Error404View.vue";
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  // history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
   routes: [
     {
       path: "/",
@@ -97,16 +99,9 @@ const router = createRouter({
     },
     {
       path: "/:catchAll(.*)",
-      component: HomeView,
+      name: "error404",
+      component: Error404View,
     },
-    // {
-    //   path: '/about',
-    //   name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (About.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    // component: () => import('../views/AboutView.vue')
-    // }
   ],
 });
 
