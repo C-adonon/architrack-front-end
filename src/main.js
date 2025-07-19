@@ -19,6 +19,6 @@ app.use(PrimeVue);
 app.use(ToastService);
 
 // test history fallback
-app.use(historyApiFallback()); 
+app.config.globalProperties.$historyApiFallback = historyApiFallback;
 
 app.mount("#app");
