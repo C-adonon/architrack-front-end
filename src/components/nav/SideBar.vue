@@ -41,7 +41,7 @@ import NavUserInfo from "@/components/nav/NavUserInfo.vue";
             />
           </li>
         </ul>
-        <ul class="nav-group">
+       <!-- <ul class="nav-group">
           <NavSubtitle :text="`notifications`" />
           <li>
             <NavTab
@@ -51,7 +51,7 @@ import NavUserInfo from "@/components/nav/NavUserInfo.vue";
             />
           </li>
         </ul>
-        <!-- <ul class="nav-group">
+         <ul class="nav-group">
           <NavSubtitle :text="`Admin`" />
           <li>
             <NavTab
