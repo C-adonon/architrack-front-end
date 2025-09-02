@@ -104,7 +104,7 @@ async function createBc() {
       :modal="true"
     >
       <template #header>
-        <h3>Add a new business capability</h3>
+        <h3 class="my-1">Add a new business capability</h3>
       </template>
 
       <div class="confirmation-content">
@@ -113,7 +113,7 @@ async function createBc() {
           <InputText
             v-model="businessCapability.name"
             placeholder="Business capability name"
-            class="w-full"
+            class="w-full mt-2"
           />
         </div>
       </div>
