@@ -53,7 +53,7 @@ async function createProvider() {
           @click="openProviderDialog"
         />
       </div>
-      <div class="grid w-full">
+      <div class="grid grid-nogutter col-12 md:grid-cols-3 gap-3 justify-content-around">
         <Card class="md:col-3" v-for="provider in providers" :key="provider.id">
           <template #header>
             <img :src="pattern" alt="Card" class="w-full" />
@@ -85,7 +85,7 @@ async function createProvider() {
           <InputText
             v-model="provider.name"
             placeholder="Provider name"
-            class="w-full"
+            class="w-full mt-2 mb-3"
           />
         </div>
         <div>
@@ -93,7 +93,7 @@ async function createProvider() {
           <InputText
             v-model="provider.description"
             placeholder="Description"
-            class="w-full"
+            class="w-full mt-2 mb-3"
           />
         </div>
         <div>
@@ -101,12 +101,12 @@ async function createProvider() {
           <InputText
             v-model="provider.location"
             placeholder="Location"
-            class="w-full"
+            class="w-full mt-2 mb-3"
           />
         </div>
         <div>
           <label for="url">URL</label>
-          <InputText v-model="provider.url" placeholder="URL" class="w-full" />
+          <InputText v-model="provider.url" placeholder="URL" class="w-full mt-2 " />
         </div>
       </div>
       <template #footer>
@@ -136,5 +136,9 @@ img {
 }
 .container {
   padding: 0 2vw;
+}
+
+div.p-card-body {
+  padding: 10px;
 }
 </style>
